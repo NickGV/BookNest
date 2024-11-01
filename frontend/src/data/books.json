@@ -1,0 +1,114 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic",
+      "status": "read",
+      "description": "A novel set in the Roaring Twenties that tells the story of Jay Gatsby's unrequited love for Daisy Buchanan.",
+      "rating": 4.4,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRBFkq6d0gT9sxSRnul72_1LFyMBO-vyrhRA&s",
+      "favorite": true
+    },
+    {
+      "id": 2,
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "status": "to-read",
+      "description": "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
+      "rating": 4.7,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ84nUqbpAYPEo7Dw9iCDYBwOlUX5bn6dr6ig&s",
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Classic",
+      "status": "reading",
+      "description": "A novel about racial injustice in the Deep South, seen through the eyes of young Scout Finch.",
+      "rating": 4.8,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS68RY84hFCFEv79YFlT9_dhetWuxhIO9Un6w&s",
+      "favorite": true
+    },
+    {
+      "id": 4,
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "genre": "Classic",
+      "status": "desired",
+      "description": "A story about teenage angst and alienation told through the eyes of Holden Caulfield.",
+      "rating": 4.0,
+      "coverImage": "https://www.tornamesa.co/imagenes/9780316/978031676948.GIF",
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "status": "read",
+      "description": "The prelude to The Lord of the Rings, following the journey of Bilbo Baggins.",
+      "rating": 4.6,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjVuWxmCtTRbsyPomqlwfXIyhvM2svIT3l7w&s",
+      "favorite": true
+    },
+    {
+      "id": 6,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Romance",
+      "status": "to-read",
+      "description": "A romantic novel that also offers a critique of societal expectations in 19th-century England.",
+      "rating": 4.5,
+      "coverImage": "https://example.com/images/pride-prejudice.jpg",
+      "favorite": false
+    },
+    {
+      "id": 7,
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "genre": "Science Fiction",
+      "status": "reading",
+      "description": "A dystopian novel that explores the dangers of technological control over humanity.",
+      "rating": 4.3,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqZr_kYn0M65Jy0huKKcCDEWbhMkDM2uTANQ&s",
+      "favorite": false
+    },
+    {
+      "id": 8,
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Philosophy",
+      "status": "read",
+      "description": "A philosophical novel that follows the journey of a shepherd boy named Santiago in search of his personal legend.",
+      "rating": 4.1,
+      "coverImage": "https://harpercollins.co.uk/cdn/shop/files/x9780007487943.jpg?v=1726041924",
+      "favorite": true
+    },
+    {
+      "id": 9,
+      "title": "Moby Dick",
+      "author": "Herman Melville",
+      "genre": "Adventure",
+      "status": "desired",
+      "description": "A novel about the obsessive quest of Captain Ahab to seek revenge on the white whale, Moby Dick.",
+      "rating": 4.2,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR3BvDQbps593u6RROXM-Wg1cbVNtBo7TVvQ&s",
+      "favorite": false
+    },
+    {
+      "id": 10,
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "status": "to-read",
+      "description": "An epic fantasy adventure that follows the journey to destroy the One Ring.",
+      "rating": 4.9,
+      "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwjvtARVQAFZvjgby4i1ev7I2h0OgHcG8YoQ&s",
+      "favorite": true
+    }
+  ]
+}
