@@ -1,17 +1,15 @@
 export const FeaturedBookCard = ({ book }) => {
   return (
     <div className="p-4 bg-gray-800 rounded-lg shadow-lg w-full text-white relative hover:shadow-xl transition-shadow duration-300 cursor pointer">
-      <div className="relative mb-4 w-full h-40 overflow-hidden rounded-lg hover:scale-105 transition-transform duration-300">
+      <div className="relative mb-4 w-full h-56 overflow-hidden rounded-lg hover:scale-105 transition-transform duration-300">
         <img
           className="w-full h-full object-cover"
           src={book.coverImage}
           alt={book.title}
         />
-        {/* Author Badge */}
         <div className="absolute bottom-2 left-2 flex items-center bg-gray-700 bg-opacity-70 px-2 py-1 rounded-full text-sm">
           <span>{book.author}</span>
         </div>
-        {/* Favorite Icon */}
         <div className="absolute top-2 right-2">
           <button className="bg-gray-700 bg-opacity-70 p-1 rounded-full hover:bg-opacity-80 transition-opacity duration-300">
             <svg
