@@ -12,7 +12,7 @@ export const SearchPage = () => {
 
   return (
     <section className="flex flex-col p-4 text-white max-w-screen-2xl mx-auto">
-      <div className="flex justify-between  items-center">
+      <div className="flex justify-between  items-center  ">
         <div className="px-8 flex">
           <select
             onChange={(e) => setFilter(e.target.value)}

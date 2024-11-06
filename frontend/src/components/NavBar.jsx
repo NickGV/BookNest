@@ -13,7 +13,7 @@ export const NavBar = () => {
       <ul className="flex flex-col mt-16">
         <NavLink
           to="/"
-          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors"
+          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors text-white"
         >
           <span className="flex flex-col ">
             <FontAwesomeIcon icon={faHouse} className="text-2xl" />
@@ -22,7 +22,7 @@ export const NavBar = () => {
         </NavLink>
         <NavLink
           to="/search"
-          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors"
+          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors text-white"
         >
           <span className="flex flex-col ">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl" />
@@ -31,7 +31,7 @@ export const NavBar = () => {
         </NavLink>
         <NavLink
           to="/library"
-          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors"
+          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors text-white"
         >
           <span className="flex flex-col ">
             <FontAwesomeIcon icon={faBookOpen} className="text-2xl" />
@@ -40,7 +40,7 @@ export const NavBar = () => {
         </NavLink>
         <NavLink
           to="/profile"
-          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors"
+          className="cursor-pointer hover:bg-gray-800 text-center p-4 transition-colors text-white"
         >
           <span className="flex flex-col ">
             <FontAwesomeIcon icon={faUser} className="text-2xl" />
