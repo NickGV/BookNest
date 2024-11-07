@@ -1,20 +1,29 @@
 import { Results } from "../components/Results";
 import { SearchBar } from "../components/SearchBar";
-import booksData from "../data/books.json";
 import { useState } from "react";
+import { fetchBooks } from "../api/bookService";
 
 export const SearchPage = () => {
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
+  const [books, setBooks] = useState([]);
 
-  const filteredBooks = booksData.books.filter((book) =>
-    filter ? book.genre === filter : true
-  );
+  // const filteredBooks = books.filter((book) => {
+  //   if (!filter) return true;
+
+  //   return book.volumeInfo.categories?.some((category) =>
+  //     category.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  // });
+  const onSearch = async (query) => {
+    const fetchedBooks = await fetchBooks(query);
+    setBooks(fetchedBooks || []);
+  };
 
   return (
     <section className="flex flex-col p-4 text-white max-w-screen-2xl mx-auto">
       <div className="flex justify-between  items-center  ">
         <div className="px-8 flex">
-          <select
+          {/* <select
             onChange={(e) => setFilter(e.target.value)}
             className="bg-gray-800 text-white p-2"
           >
@@ -26,12 +35,12 @@ export const SearchPage = () => {
             <option value="Science Fiction">Science Fiction</option>
             <option value="Philosophy">Philosophy</option>
             <option value="Adventure">Adventure</option>
-          </select>
+          </select> */}
         </div>
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
       </div>
-      <div className="p-4">
-        <Results books={filteredBooks} />
+      <div className="p-4 mt-28">
+        <Results books={books} />
       </div>
     </section>
   );
