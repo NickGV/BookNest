@@ -1,6 +1,6 @@
 export const CurrentBookCard = ({ book }) => {
   return (
-    <div className="flex p-4 bg-gray-700 rounded-lg shadow-md w-full h-52 text-white relative">
+    <div className="flex flex-col sm:flex-row p-4 bg-gray-700 rounded-lg shadow-md w-full h-auto sm:h-52 text-white relative">
       <div className="absolute top-3 right-3">
         <button className="bg-gray-600 p-1 rounded-full">
           <svg
@@ -14,7 +14,7 @@ export const CurrentBookCard = ({ book }) => {
         </button>
       </div>
 
-      <div className="w-56">
+      <div className="w-full sm:w-56 h-40 sm:h-full mb-4 sm:mb-0">
         <img
           src={book.coverImage}
           alt={book.title}
@@ -22,7 +22,7 @@ export const CurrentBookCard = ({ book }) => {
         />
       </div>
 
-      <div className="ml-4">
+      <div className="ml-0 sm:ml-4">
         <h3 className="text-lg font-semibold">{book.title}</h3>
         <p className="text-sm text-gray-400 max-w-prose">{book.description}</p>
       </div>

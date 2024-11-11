@@ -4,7 +4,7 @@ export const Layout = ({ children }) => {
   return (
     <div className="flex">
       <NavBar />
-      <main className="flex-1 ml-20 p-4 h-screen">{children}</main>
+      <main className="flex-1 md:ml-20 p-4 h-screen">{children}</main>
     </div>
   );
 };

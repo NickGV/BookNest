@@ -21,16 +21,22 @@ export const UserLibrary = () => {
       <div>
         <ul className="flex gap-4">
           {["All", "reading", "desired", "read", "to-read"].map((status) => (
-            <li key={status} className={`cursor-pointer px-4 py-2 rounded-lg transition-colors duration-200 ${filter === status ? 'bg-blue-500 text-white font-bold' : 'bg-gray-700 text-gray-300 hover:bg-blue-600'}`} onClick={() => handleFilterChange(status)}>
+            <li
+              key={status}
+              className={`cursor-pointer px-4 py-2 rounded-lg transition-colors duration-200 ${
+                filter === status
+                  ? "bg-blue-500 text-white font-bold"
+                  : "bg-gray-700 text-gray-300 hover:bg-blue-600"
+              }`}
+              onClick={() => handleFilterChange(status)}
+            >
               {status}
             </li>
           ))}
         </ul>
       </div>
 
-      <div>
-        <BookList books={filteredBooks} />
-      </div>
+      <div>{/* <BookList books={filteredBooks} /> */}</div>
     </section>
   );
 };

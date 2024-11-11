@@ -1,7 +1,7 @@
 export const FeaturedBookCard = ({ book }) => {
   return (
-    <div className="p-4 bg-gray-800 rounded-lg shadow-lg w-full text-white relative hover:shadow-xl transition-shadow duration-300 cursor pointer">
-      <div className="relative mb-4 w-full h-56 overflow-hidden rounded-lg hover:scale-105 transition-transform duration-300">
+    <div className="p-4 bg-gray-800 rounded-lg shadow-lg w-full text-white relative hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+      <div className="relative mb-4 w-full h-40 sm:h-56 overflow-hidden rounded-lg hover:scale-105 transition-transform duration-300">
         <img
           className="w-full h-full object-cover"
           src={book.coverImage}
