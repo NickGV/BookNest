@@ -6,16 +6,16 @@ export const BookCard = ({ book }) => {
   return (
     <div
       key={book.id}
-      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex hover:bg-gray-700 transition-all duration-300 mb-28 min-h-56 h-auto"
+      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3"
     >
-      <div className="h-[211px] w-1/2 overflow-hidden rounded-lg -mt-28">
+      <div className="h-[211px] w-full sm:w-1/2 overflow-hidden rounded-lg mb-4 sm:mb-0 sm:-mt-28">
         <img
           src={book.volumeInfo.imageLinks?.thumbnail || ""}
           alt={book.volumeInfo.title}
-          className="h-full object-cover rounded-lg hover:rounded-lg transition-transform duration-300 hover:scale-105 w-[211]"
+          className="h-full object-cover rounded-lg hover:rounded-lg transition-transform duration-300 hover:scale-105 w-full"
         />
       </div>
-      <div className="flex flex-col w-1/2">
+      <div className="flex flex-col w-full sm:w-1/2">
         <h2 className="text-lg font-bold mb-1">{book.volumeInfo.title}</h2>
         {book.volumeInfo.subtitle && (
           <p className="text-md font-medium text-gray-300 mb-2">

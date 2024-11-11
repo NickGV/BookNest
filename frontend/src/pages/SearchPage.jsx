@@ -1,19 +1,11 @@
-import { Results } from "../components/Results";
-import { SearchBar } from "../components/SearchBar";
 import { useState } from "react";
+import { SearchBar } from "../components/SearchBar";
+import { Results } from "../components/Results";
 import { fetchBooks } from "../api/bookService";
 
 export const SearchPage = () => {
-  // const [filter, setFilter] = useState("");
   const [books, setBooks] = useState([]);
 
-  // const filteredBooks = books.filter((book) => {
-  //   if (!filter) return true;
-
-  //   return book.volumeInfo.categories?.some((category) =>
-  //     category.toLowerCase().includes(filter.toLowerCase())
-  //   );
-  // });
   const onSearch = async (query) => {
     const fetchedBooks = await fetchBooks(query);
     setBooks(fetchedBooks || []);
@@ -21,8 +13,8 @@ export const SearchPage = () => {
 
   return (
     <section className="flex flex-col p-4 text-white max-w-screen-2xl mx-auto">
-      <div className="flex justify-between  items-center  ">
-        <div className="px-8 flex">
+      <div className="flex flex-col-reverse sm:flex-row justify-between items-center">
+        <div className="px-8 flex mb-4 sm:mb-0">
           {/* <select
             onChange={(e) => setFilter(e.target.value)}
             className="bg-gray-800 text-white p-2"
@@ -39,7 +31,7 @@ export const SearchPage = () => {
         </div>
         <SearchBar onSearch={onSearch} />
       </div>
-      <div className="p-4 mt-28">
+      <div className="p-4 mt-4 sm:mt-8">
         <Results books={books} />
       </div>
     </section>
