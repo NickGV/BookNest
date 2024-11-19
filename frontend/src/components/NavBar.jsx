@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
   return (
-    <nav className="fixed bottom-0 w-full bg-gray-600 sm:top-0 sm:left-0 sm:h-screen sm:w-20 z-10">
+    <nav className="fixed bottom-0 w-full bg-gray-700 sm:top-0 sm:left-0 sm:h-screen sm:w-20 z-10">
       <ul className="flex flex-row justify-around sm:flex-col sm:mt-16">
         <NavLink
           to="/"

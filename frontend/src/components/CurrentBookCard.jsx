@@ -1,6 +1,6 @@
 export const CurrentBookCard = ({ book }) => {
   return (
-    <div className="flex flex-col sm:flex-row p-4 bg-gray-700 rounded-lg shadow-md w-full h-auto sm:h-52 text-white relative">
+    <div className="flex flex-col sm:flex-row p-4 bg-gray-800 rounded-lg shadow-md w-full h-auto sm:h-52 text-white relative">
       <div className="absolute top-3 right-3">
         <button className="bg-gray-600 p-1 rounded-full">
           <svg
