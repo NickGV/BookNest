@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BookMenu } from "./BookMenu";
 
 export const BookCard = ({ book }) => {
   const [showMore, setShowMore] = useState(false);
@@ -6,7 +7,7 @@ export const BookCard = ({ book }) => {
   return (
     <div
       key={book.id}
-      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3"
+      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3 group"
     >
       <div className="h-[211px] w-full sm:w-1/2 overflow-hidden rounded-lg mb-4 sm:mb-0 sm:-mt-28">
         <img
@@ -44,6 +45,7 @@ export const BookCard = ({ book }) => {
           ))}
         </div>
       </div>
+      <BookMenu book={book} />
     </div>
   );
 };

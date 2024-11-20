@@ -8,29 +8,32 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { BookProvider } from "./context/BookProvider.jsx";
 
 function App() {
   return (
-    <AuthProvider>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/book/:id" element={<BookDetails />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+    <BookProvider>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/book/:id" element={<BookDetails />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-          <Route
-            path="/protected"
-            element={
-              <PrivateRoute>
-                <UserLibrary />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Layout>
-    </AuthProvider>
+            <Route
+              path="/protected"
+              element={
+                <PrivateRoute>
+                  <UserLibrary />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Layout>
+      </AuthProvider>
+    </BookProvider>
   );
 }
 
