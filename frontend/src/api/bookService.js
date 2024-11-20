@@ -57,12 +57,3 @@ export const deleteBook = async (token, bookId) => {
   });
   return response.json();
 };
-
-export const getUserBooks = async (token) => {
-  const response = await fetch(`${API_URL}/books`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.json();
-}
