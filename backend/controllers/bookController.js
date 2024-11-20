@@ -1,15 +1,24 @@
-const Book = require("../models/Book");
+const Book = require("../models/book");
 
 exports.createBook = async (req, res) => {
   try {
-    const { title, author, genre, status } = req.body;
+    const { title, description, author, categories, status, coverImage } = req.body;
     const userId = req.user.id;
 
-    const book = new Book({ title, author, genre, status, userId });
+    const book = new Book({
+      title,
+      description,
+      author,
+      categories,
+      coverImage,
+      status,
+      userId,
+    });
     await book.save();
 
     res.status(201).json(book);
   } catch (err) {
+    console.error("Error al guardar el libro:", err);
     res.status(500).json({ error: "Error al guardar el libro" });
   }
 };
