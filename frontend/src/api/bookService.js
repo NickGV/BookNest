@@ -17,8 +17,10 @@ const API_URL = "http://localhost:3000/api";
 
 export const fetchUserBooks = async (token) => {
   const response = await fetch(`${API_URL}/books`, {
+    method: "GET",
     headers: {
-      Authorization: token,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   });
   return response.json();

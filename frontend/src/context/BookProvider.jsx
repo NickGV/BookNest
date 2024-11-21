@@ -4,17 +4,20 @@ import { BookContext } from "./BookContext";
 
 export const BookProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("authToken");
 
   useEffect(() => {
-    const loadBooks = async () => {
-      if (token) {
-        const userBooks = await fetchUserBooks(token);
-        setBooks(userBooks);
-      }
-    };
-    loadBooks();
+    if (token) {
+      loadBooks();
+    }
   }, [token]);
+
+  const loadBooks = async () => {
+    if (token) {
+      const userBooks = await fetchUserBooks(token);
+      setBooks(userBooks);
+    }
+  };
 
   return (
     <BookContext.Provider value={{ books, setBooks }}>

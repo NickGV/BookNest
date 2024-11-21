@@ -2,7 +2,8 @@ const Book = require("../models/book");
 
 exports.createBook = async (req, res) => {
   try {
-    const { title, description, author, categories, status, coverImage } = req.body;
+    const { title, description, author, categories, status, coverImage } =
+      req.body;
     const userId = req.user.id;
 
     const book = new Book({
