@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BookList } from "../components/BookList";
-import booksData from "../data/books.json";
+import { BookContext } from "../context/BookContext";
 
 export const UserLibrary = () => {
   const [filter, setFilter] = useState("All");
+  const { books } = useContext(BookContext);
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
 
-  const filteredBooks = booksData.books.filter((book) => {
+  const filteredBooks = books.filter((book) => {
     if (filter === "All") return true;
     return book.status === filter;
   });
@@ -36,7 +37,9 @@ export const UserLibrary = () => {
         </ul>
       </div>
 
-      <div>{/* <BookList books={filteredBooks} /> */}</div>
+      <div>
+        <BookList books={filteredBooks} />
+      </div>
     </section>
   );
 };

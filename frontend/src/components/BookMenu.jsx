@@ -4,8 +4,11 @@ import { BookContext } from "../context/BookContext";
 
 export const BookMenu = ({ book }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setBooks } = useContext(BookContext);
+  const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
+  const { books, setBooks } = useContext(BookContext);
   const token = localStorage.getItem("authToken");
+
+  const isBookAdded = books.some((b) => b.title === book.title);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -13,11 +16,11 @@ export const BookMenu = ({ book }) => {
 
   const handleSave = async () => {
     const newBook = {
-      title: book.volumeInfo.title,
-      description: book.volumeInfo.description || "No description",
-      author: book.volumeInfo.authors?.join(", "),
-      categories: book.volumeInfo.categories[0] || "Uncategorized",
-      coverImage: book.volumeInfo.imageLinks?.thumbnail || "",
+      title: book.title,
+      description: book.description || "No description",
+      author: book.author,
+      categories: book.categories || "Uncategorized",
+      coverImage: book.coverImage || "",
       status: "to-read",
     };
     const savedBook = await saveBook(token, newBook);
@@ -57,34 +60,44 @@ export const BookMenu = ({ book }) => {
           <ul className="py-2">
             <li
               onClick={() => {
-                handleSave(book);
-                setIsMenuOpen(false);
-              }}
-              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
-            >
-              Add to My Books
-            </li>
-            <li
-              onClick={() => {
-                const newStatus = prompt("Enter new status:", book.status);
-                if (newStatus) {
-                  handleUpdate(book, newStatus);
+                if (isBookAdded) {
+                  handleDelete(book._id);
+                } else {
+                  handleSave(book);
                 }
                 setIsMenuOpen(false);
               }}
               className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
             >
-              Change Status
+              {isBookAdded ? "Remove from My Books" : "Add to My Books"}
             </li>
             <li
               onClick={() => {
-                handleDelete(book);
-                setIsMenuOpen(false);
+                setIsStatusMenuOpen((prev) => !prev);
               }}
               className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
             >
-              Delete
+              Change Status
             </li>
+            {isStatusMenuOpen && (
+              <ul className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg">
+                {["reading", "completed", "desired", "read", "to-read"].map(
+                  (status) => (
+                    <li
+                      key={status}
+                      onClick={() => {
+                        handleUpdate(book._id, status);
+                        setIsStatusMenuOpen(false);
+                        setIsMenuOpen(false);
+                      }}
+                      className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                    >
+                      {status}
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
           </ul>
         </div>
       )}

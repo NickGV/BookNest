@@ -2,26 +2,26 @@ import { useState, useContext, useEffect } from "react";
 import { BookMenu } from "./BookMenu";
 import { BookContext } from "../context/BookContext";
 
-export const BookCard = ({ book }) => {
+export const BookLibraryCard = ({ book }) => {
   const [showMore, setShowMore] = useState(false);
   const { books } = useContext(BookContext);
 
   useEffect(() => {
-    // Check if the book is already added to the user's books
-    const isBookAdded = books.some((b) => b.title === book.volumeInfo.title);
-  }, [books, book.volumeInfo.title]);
+    const isBookAdded = books.some((b) => b.title === book.title);
+  }, [books, book.title]);
 
   const transformedBook = {
-    title: book.volumeInfo.title,
-    description: book.volumeInfo.description,
-    author: book.volumeInfo.authors?.join(", "),
-    categories: book.volumeInfo.categories?.join(", "),
-    coverImage: book.volumeInfo.imageLinks?.thumbnail,
+    _id: book._id,
+    title: book.title,
+    description: book.description,
+    author: book.author,
+    categories: book.categories,
+    coverImage: book.coverImage,
   };
 
   return (
     <div
-      key={book.id}
+      key={book._id}
       className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3 group"
     >
       <div className="h-[211px] w-full sm:w-1/2 overflow-hidden rounded-lg mb-4 sm:mb-0 sm:-mt-28">

@@ -6,9 +6,9 @@ import { UserLibrary } from "./pages/UserLibrary";
 import { BookDetails } from "./pages/BookDetails";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
-import { AuthProvider } from "./context/AuthProvider.jsx";
+import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { BookProvider } from "./context/BookProvider.jsx";
+import { BookProvider } from "./context/BookProvider";
 
 function App() {
   return (
