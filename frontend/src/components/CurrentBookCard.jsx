@@ -24,7 +24,7 @@ export const CurrentBookCard = ({ book }) => {
 
       <div className="ml-0 sm:ml-4">
         <h3 className="text-lg font-semibold">{book.title}</h3>
-        <p className="text-sm text-gray-400 max-w-prose">{book.description}</p>
+        <p className="text-sm text-gray-400 max-w-prose">{book.subtitle}</p>
       </div>
     </div>
   );

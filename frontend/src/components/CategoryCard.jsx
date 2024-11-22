@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const CategoryCard = ({ icon, name }) => {
   return (
-    <li className="flex flex-col text-lg items-center justify-center w-32 h-24 sm:w-44 sm:h-28 bg-gray-600 rounded hover:scale-105 transition-transform cursor-pointer shadow-sm shadow-slate-400">
-      <FontAwesomeIcon icon={icon} className="text-2xl sm:text-3xl" />
-      <span className="text-sm sm:text-lg">{name}</span>
-    </li>
+    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-gray-700 transition-all duration-300">
+      <FontAwesomeIcon icon={icon} className="text-2xl mb-2" />
+      <span className="text-lg font-bold">{name}</span>
+    </div>
   );
 };

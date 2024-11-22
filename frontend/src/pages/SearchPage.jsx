@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchBar } from "../components/SearchBar";
 import { Results } from "../components/Results";
 import { fetchBooks } from "../api/bookService";
@@ -7,15 +7,31 @@ export const SearchPage = () => {
   const [books, setBooks] = useState([]);
   const [filter, setFilter] = useState("");
   const [categories, setCategories] = useState([]);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const savedQuery = localStorage.getItem("searchQuery");
+    const savedBooks = JSON.parse(localStorage.getItem("searchBooks"));
+    const savedCategories = JSON.parse(localStorage.getItem("searchCategories"));
+
+    if (savedQuery) setQuery(savedQuery);
+    if (savedBooks) setBooks(savedBooks);
+    if (savedCategories) setCategories(savedCategories);
+  }, []);
 
   const onSearch = async (query) => {
+    setQuery(query);
+    localStorage.setItem("searchQuery", query);
+
     const fetchedBooks = await fetchBooks(query);
     setBooks(fetchedBooks || []);
+    localStorage.setItem("searchBooks", JSON.stringify(fetchedBooks || []));
 
     const allCategories = fetchedBooks
       .flatMap(book => book.volumeInfo.categories || [])
-      .filter((value, index, self) => self.indexOf(value) === index); 
+      .filter((value, index, self) => self.indexOf(value) === index);
     setCategories(allCategories);
+    localStorage.setItem("searchCategories", JSON.stringify(allCategories));
   };
 
   const filteredBooks = filter

@@ -1,51 +1,42 @@
+import { BookMenu } from "./BookMenu";
+
 export const FeaturedBookCard = ({ book }) => {
+  if (!book.volumeInfo) {
+    return null;
+  }
+
+  const transformedBook = {
+    title: book.volumeInfo.title,
+    description: book.volumeInfo.description,
+    author: book.volumeInfo.authors?.join(", "),
+    categories:  book.volumeInfo.categories?.join(", "),
+    coverImage: book.volumeInfo.imageLinks?.thumbnail,
+  };
+
   return (
-    <div className="p-4 bg-gray-800 rounded-lg shadow-lg w-full text-white relative hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-      <div className="relative mb-4 w-full h-40 sm:h-56 overflow-hidden rounded-lg hover:scale-105 transition-transform duration-300">
+    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col hover:bg-gray-700 transition-all duration-300">
+      <div className="h-[211px] w-full overflow-hidden rounded-lg mb-4">
         <img
-          className="w-full h-full object-cover"
-          src={book.coverImage}
-          alt={book.title}
+          src={transformedBook.coverImage || ""}
+          alt={transformedBook.title}
+          className="h-full object-cover rounded-lg hover:rounded-lg transition-transform duration-300 hover:scale-105 w-full"
         />
-        <div className="absolute bottom-2 left-2 flex items-center bg-gray-700 bg-opacity-70 px-2 py-1 rounded-full text-sm">
-          <span>{book.author}</span>
-        </div>
-        <div className="absolute top-2 right-2">
-          <button className="bg-gray-700 bg-opacity-70 p-1 rounded-full hover:bg-opacity-80 transition-opacity duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-5 h-5 text-white"
+      </div>
+      <div className="flex flex-col">
+        <h2 className="text-lg font-bold mb-1">{transformedBook.title}</h2>
+        <p className="text-sm text-gray-400 mb-1">{transformedBook.author}</p>
+        <div className="flex flex-wrap mt-2">
+          {transformedBook.categories?.split(", ").map((category) => (
+            <span
+              key={category}
+              className="text-xs text-gray-200 mb-1 mr-2 bg-gray-600 px-2 py-1 rounded-full"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 15l7-7 7 7"
-              />
-            </svg>
-          </button>
+              {category}
+            </span>
+          ))}
         </div>
       </div>
-      <h3 className="text-lg font-semibold">{book.title}</h3>
-      <div className="flex items-center text-gray-400 text-sm mt-2">
-        <div className="flex items-center mr-4">
-          <span>{book.genre}</span>
-        </div>
-        <div className="flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            className="w-4 h-4 mr-1"
-          >
-            <path d="M12 17.27L18.18 21 16.54 14 22 9.24 15.09 8.63 12 2 8.91 8.63 2 9.24 7.46 14 5.82 21z" />
-          </svg>
-          <span>{book.rating}</span>
-        </div>
-      </div>
+      <BookMenu book={transformedBook} />
     </div>
   );
 };

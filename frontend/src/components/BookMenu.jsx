@@ -81,7 +81,7 @@ export const BookMenu = ({ book }) => {
             </li>
             {isStatusMenuOpen && (
               <ul className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg">
-                {["reading", "completed", "desired", "read", "to-read"].map(
+                {["reading", "read", "desired", "read", "to-read"].map(
                   (status) => (
                     <li
                       key={status}
