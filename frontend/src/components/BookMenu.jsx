@@ -8,7 +8,7 @@ export const BookMenu = ({ book }) => {
   const { books, setBooks } = useContext(BookContext);
   const token = localStorage.getItem("authToken");
 
-  const isBookAdded = books.some((b) => b.title === book.title);
+  const isBookAdded = Array.isArray(books) && books.some((b) => b.title === book.title);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);

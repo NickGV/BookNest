@@ -23,6 +23,9 @@ export const fetchUserBooks = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.ok) {
+    throw new Error("Failed to fetch user books");
+  }
   return response.json();
 };
 
@@ -35,6 +38,9 @@ export const saveBook = async (token, book) => {
     },
     body: JSON.stringify(book),
   });
+  if (!response.ok) {
+    throw new Error("Failed to save book");
+  }
   return response.json();
 };
 
@@ -47,6 +53,9 @@ export const updateBook = async (token, bookId, status) => {
     },
     body: JSON.stringify({ status }),
   });
+  if (!response.ok) {
+    throw new Error("Failed to update book");
+  }
   return response.json();
 };
 
@@ -57,5 +66,8 @@ export const deleteBook = async (token, bookId) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.ok) {
+    throw new Error("Failed to delete book");
+  }
   return response.json();
 };

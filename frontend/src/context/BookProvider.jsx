@@ -14,8 +14,12 @@ export const BookProvider = ({ children }) => {
 
   const loadBooks = async () => {
     if (token) {
-      const userBooks = await fetchUserBooks(token);
-      setBooks(userBooks);
+      try {
+        const userBooks = await fetchUserBooks(token);
+        setBooks(userBooks);
+      } catch (error) {
+        console.error("Failed to load user books:", error);
+      }
     }
   };
 
