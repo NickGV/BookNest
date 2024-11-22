@@ -7,12 +7,12 @@ export const BookCard = ({ book }) => {
   const { books } = useContext(BookContext);
 
   useEffect(() => {
-    // Check if the book is already added to the user's books
     const isBookAdded = books.some((b) => b.title === book.volumeInfo.title);
   }, [books, book.volumeInfo.title]);
 
   const transformedBook = {
     title: book.volumeInfo.title,
+    subtitle: book.volumeInfo.subtitle,
     description: book.volumeInfo.description,
     author: book.volumeInfo.authors?.join(", "),
     categories: book.volumeInfo.categories?.join(", "),
@@ -33,11 +33,11 @@ export const BookCard = ({ book }) => {
       </div>
       <div className="flex flex-col w-full sm:w-1/2">
         <h2 className="text-lg font-bold mb-1">{transformedBook.title}</h2>
-        {transformedBook.description && (
+        {transformedBook.subtitle && (
           <p className="text-md font-medium text-gray-300 mb-2">
             {showMore
-              ? transformedBook.description
-              : transformedBook.description.split(" ").slice(0, 5).join(" ")}
+              ? transformedBook.subtitle
+              : transformedBook.subtitle.split(" ").slice(0, 5).join(" ")}
             <button
               onClick={() => setShowMore(!showMore)}
               className="ml-1 text-blue-400"

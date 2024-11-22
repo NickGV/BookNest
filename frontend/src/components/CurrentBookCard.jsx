@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export const CurrentBookCard = ({ book }) => {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <div className="flex flex-col sm:flex-row p-4 bg-gray-800 rounded-lg shadow-md w-full h-auto sm:h-52 text-white relative">
       <div className="absolute top-3 right-3">
@@ -24,7 +28,21 @@ export const CurrentBookCard = ({ book }) => {
 
       <div className="ml-0 sm:ml-4">
         <h3 className="text-lg font-semibold">{book.title}</h3>
-        <p className="text-sm text-gray-400 max-w-prose">{book.subtitle}</p>
+        <p className="text-sm text-gray-400 max-w-prose">
+          {book.subtitle && (
+            <p className="text-md font-medium text-gray-300 mb-2">
+              {showMore
+                ? book.subtitle
+                : book.subtitle.split(" ").slice(0, 5).join(" ")}
+              <button
+                onClick={() => setShowMore(!showMore)}
+                className="ml-1 text-blue-400"
+              >
+                {showMore ? "Ver menos" : "Ver más"}
+              </button>
+            </p>
+          )}
+        </p>
       </div>
     </div>
   );

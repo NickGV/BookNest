@@ -8,7 +8,8 @@ export const BookMenu = ({ book }) => {
   const { books, setBooks } = useContext(BookContext);
   const token = localStorage.getItem("authToken");
 
-  const isBookAdded = Array.isArray(books) && books.some((b) => b.title === book.title);
+  const isBookAdded =
+    Array.isArray(books) && books.some((b) => b.title === book.title);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -17,6 +18,7 @@ export const BookMenu = ({ book }) => {
   const handleSave = async () => {
     const newBook = {
       title: book.title,
+      subtitle: book.subtitle || "No subtitle",
       description: book.description || "No description",
       author: book.author,
       categories: book.categories || "Uncategorized",
@@ -81,21 +83,19 @@ export const BookMenu = ({ book }) => {
             </li>
             {isStatusMenuOpen && (
               <ul className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg">
-                {["reading", "read", "desired", "read", "to-read"].map(
-                  (status) => (
-                    <li
-                      key={status}
-                      onClick={() => {
-                        handleUpdate(book._id, status);
-                        setIsStatusMenuOpen(false);
-                        setIsMenuOpen(false);
-                      }}
-                      className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                    >
-                      {status}
-                    </li>
-                  )
-                )}
+                {["reading", "desired", "read", "to-read"].map((status) => (
+                  <li
+                    key={status}
+                    onClick={() => {
+                      handleUpdate(book._id, status);
+                      setIsStatusMenuOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                    className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                  >
+                    {status}
+                  </li>
+                ))}
               </ul>
             )}
           </ul>
