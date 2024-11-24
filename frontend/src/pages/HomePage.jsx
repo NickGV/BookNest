@@ -12,18 +12,16 @@ export const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const readingBooks = books.filter((book) => book.status === "reading");
-  console.log(readingBooks);
 
   useEffect(() => {
     const userCategories = books
       .flatMap((book) => book.categories.split(", "))
       .filter((value, index, self) => self.indexOf(value) === index);
 
-    setCategories(userCategories);
-
     const fetchFeaturedBooks = async () => {
       const allFeaturedBooks = [];
-      for (const category of userCategories) {
+      const categoriesToFetch = userCategories.length > 0 ? userCategories : ["fiction", "non-fiction", "mystery", "fantasy"];
+      for (const category of categoriesToFetch) {
         const fetchedBooks = await fetchBooks(category);
         allFeaturedBooks.push(...fetchedBooks);
       }
@@ -31,7 +29,13 @@ export const HomePage = () => {
       setLoading(false);
     };
 
+    const fetchRandomCategories = async () => {
+      const randomCategories = userCategories.length > 0 ? userCategories : ["fiction", "non-fiction", "mystery", "fantasy"];
+      setCategories(randomCategories);
+    };
+
     fetchFeaturedBooks();
+    fetchRandomCategories();
   }, [books]);
 
   if (loading) {
@@ -62,9 +66,13 @@ export const HomePage = () => {
       <article>
         <h2 className="text-3xl font-bold mb-4">Currently Reading</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {readingBooks.map((book) => (
-            <CurrentBookCard key={book.id} book={book} />
-          ))}
+          {readingBooks.length > 0 ? (
+            readingBooks.map((book) => (
+              <CurrentBookCard key={book.id} book={book} />
+            ))
+          ) : (
+            <p className="text-gray-400">You are not currently reading any books.</p>
+          )}
         </ul>
       </article>
     </section>

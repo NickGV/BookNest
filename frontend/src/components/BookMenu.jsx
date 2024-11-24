@@ -41,6 +41,15 @@ export const BookMenu = ({ book }) => {
     );
   };
 
+  const statusColors = {
+    reading: "bg-blue-500 hover:bg-blue-600",
+    desired: "bg-yellow-500 hover:bg-yellow-600",
+    read: "bg-green-500 hover:bg-green-600",
+    "to-read": "bg-red-500 hover:bg-red-600",
+  };
+
+  console.log(book);
+
   return (
     <div className="relative">
       <button
@@ -91,7 +100,13 @@ export const BookMenu = ({ book }) => {
                       setIsStatusMenuOpen(false);
                       setIsMenuOpen(false);
                     }}
-                    className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                    className={`px-4 py-2 cursor-pointer ${
+                      statusColors[status]
+                    } ${
+                      book.status === status
+                        ? "font-bold border border-white"
+                        : ""
+                    }`}
                   >
                     {status}
                   </li>

@@ -17,6 +17,7 @@ export const BookLibraryCard = ({ book }) => {
     author: book.author,
     categories: book.categories,
     coverImage: book.coverImage,
+    status: book.status,
   };
 
   return (
