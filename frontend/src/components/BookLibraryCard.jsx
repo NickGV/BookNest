@@ -1,10 +1,12 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BookMenu } from "./BookMenu";
 import { BookContext } from "../context/BookContext";
 
 export const BookLibraryCard = ({ book }) => {
   const [showMore, setShowMore] = useState(false);
   const { books } = useContext(BookContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const isBookAdded = books.some((b) => b.title === book.title);
@@ -24,10 +26,15 @@ export const BookLibraryCard = ({ book }) => {
     publishedDate: book.publishedDate,
   };
 
+  const handleCardClick = () => {
+    navigate(`/book/${transformedBook._id}`);
+  };
+
   return (
     <div
       key={book._id}
-      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3 group"
+      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row hover:bg-gray-700 transition-all duration-300 mt-6 sm:mt-24 md:mt-24 lg:mt-24 xl:mt-24 min-h-56 h-auto gap-3 group cursor-pointer"
+      onClick={handleCardClick}
     >
       <div className="h-[211px] w-full sm:w-1/2 overflow-hidden rounded-lg mb-4 sm:mb-0 sm:-mt-28">
         <img
@@ -44,7 +51,10 @@ export const BookLibraryCard = ({ book }) => {
               ? transformedBook.description
               : transformedBook.description.split(" ").slice(0, 5).join(" ")}
             <button
-              onClick={() => setShowMore(!showMore)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowMore(!showMore);
+              }}
               className="ml-1 text-blue-400"
             >
               {showMore ? "Ver menos" : "Ver más"}
@@ -62,7 +72,15 @@ export const BookLibraryCard = ({ book }) => {
             </span>
           ))}
         </div>
-        <a href={transformedBook.previewLink} className="text-blue-400" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a
+          href={transformedBook.previewLink}
+          className="text-blue-400"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Preview
+        </a>
       </div>
       <BookMenu book={transformedBook} />
     </div>

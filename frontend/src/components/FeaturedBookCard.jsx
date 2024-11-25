@@ -1,23 +1,34 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BookMenu } from "./BookMenu";
 
 export const FeaturedBookCard = ({ book }) => {
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
+
   if (!book.volumeInfo) {
     return null;
   }
 
   const transformedBook = {
+    _id: book.id,
     title: book.volumeInfo.title,
     subtitle: book.volumeInfo.subtitle,
     description: book.volumeInfo.description,
-    author: book.volumeInfo.authors?.join(", ").slice(0, 50),
+    author: book.volumeInfo.authors?.join(", "),
     categories: book.volumeInfo.categories?.join(", "),
     coverImage: book.volumeInfo.imageLinks?.thumbnail,
   };
 
+  const handleCardClick = () => {
+    navigate(`/book/${transformedBook._id}`);
+  };
+
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col hover:bg-gray-700 transition-all duration-300 group">
+    <div
+      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col hover:bg-gray-700 transition-all duration-300 group cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="h-[211px] w-full overflow-hidden rounded-lg mb-4">
         <img
           src={transformedBook.coverImage || ""}
@@ -45,7 +56,10 @@ export const FeaturedBookCard = ({ book }) => {
           ))}
         </div>
         <button
-          onClick={() => setShowMore(!showMore)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowMore(!showMore);
+          }}
           className="text-blue-400 mt-2"
         >
           {showMore ? "Show less" : "Show more"}

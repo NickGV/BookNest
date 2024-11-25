@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:3000/api";
+
 export const fetchBooks = async (query) => {
   const response = await fetch(
     `https://www.googleapis.com/books/v1/volumes?q=${query}`,
@@ -13,7 +15,17 @@ export const fetchBooks = async (query) => {
   return data.items;
 };
 
-const API_URL = "http://localhost:3000/api";
+export const fetchBookById = async (id) => {
+  const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
 
 export const fetchUserBooks = async (token) => {
   const response = await fetch(`${API_URL}/books`, {
