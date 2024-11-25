@@ -48,7 +48,6 @@ export const BookMenu = ({ book }) => {
     "to-read": "bg-red-500 hover:bg-red-600",
   };
 
-  console.log(book);
 
   return (
     <div className="relative">

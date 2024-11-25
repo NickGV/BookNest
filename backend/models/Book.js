@@ -12,6 +12,10 @@ const bookSchema = new mongoose.Schema({
     enum: ["reading", "completed", "desired", "read", "to-read"],
     required: true,
   },
+  pageCount: { type: Number },
+  infoLink: { type: String },
+  previewLink: { type: String },
+  publishedDate: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 

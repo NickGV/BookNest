@@ -18,6 +18,10 @@ export const BookLibraryCard = ({ book }) => {
     categories: book.categories,
     coverImage: book.coverImage,
     status: book.status,
+    pageCount: book.pageCount,
+    infoLink: book.infoLink,
+    previewLink: book.previewLink,
+    publishedDate: book.publishedDate,
   };
 
   return (
@@ -58,6 +62,10 @@ export const BookLibraryCard = ({ book }) => {
             </span>
           ))}
         </div>
+        <p className="text-sm text-gray-400 mb-1">Pages: {transformedBook.pageCount}</p>
+        <p className="text-sm text-gray-400 mb-1">Published: {transformedBook.publishedDate}</p>
+        <a href={transformedBook.infoLink} className="text-blue-400" target="_blank" rel="noopener noreferrer">More Info</a>
+        <a href={transformedBook.previewLink} className="text-blue-400" target="_blank" rel="noopener noreferrer">Preview</a>
       </div>
       <BookMenu book={transformedBook} />
     </div>

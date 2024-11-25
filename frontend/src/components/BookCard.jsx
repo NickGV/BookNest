@@ -17,6 +17,10 @@ export const BookCard = ({ book }) => {
     author: book.volumeInfo.authors?.join(", "),
     categories: book.volumeInfo.categories?.join(", "),
     coverImage: book.volumeInfo.imageLinks?.thumbnail,
+    pageCount: book.volumeInfo.pageCount,
+    infoLink: book.volumeInfo.infoLink,
+    previewLink: book.volumeInfo.previewLink,
+    publishedDate: book.volumeInfo.publishedDate,
   };
 
   return (
@@ -57,6 +61,10 @@ export const BookCard = ({ book }) => {
             </span>
           ))}
         </div>
+        <p className="text-sm text-gray-400 mb-1">Pages: {transformedBook.pageCount}</p>
+        <p className="text-sm text-gray-400 mb-1">Published: {transformedBook.publishedDate}</p>
+        <a href={transformedBook.infoLink} className="text-blue-400" target="_blank" rel="noopener noreferrer">More Info</a>
+        <a href={transformedBook.previewLink} className="text-blue-400" target="_blank" rel="noopener noreferrer">Preview</a>
       </div>
       <BookMenu book={transformedBook} />
     </div>
