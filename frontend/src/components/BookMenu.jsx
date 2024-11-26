@@ -48,11 +48,13 @@ export const BookMenu = ({ book }) => {
     "to-read": "bg-red-500 hover:bg-red-600",
   };
 
-
   return (
-    <div className="relative">
+    <div className="relative z-10">
       <button
-        onClick={toggleMenu}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleMenu();
+        }}
         className="p-2 bg-gray-700 text-white rounded-full focus:outline-none group-hover:bg-gray-600"
       >
         <svg
@@ -69,7 +71,9 @@ export const BookMenu = ({ book }) => {
         <div className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg">
           <ul className="py-2">
             <li
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
+
                 if (isBookAdded) {
                   handleDelete(book._id);
                 } else {
@@ -82,7 +86,8 @@ export const BookMenu = ({ book }) => {
               {isBookAdded ? "Remove from My Books" : "Add to My Books"}
             </li>
             <li
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 setIsStatusMenuOpen((prev) => !prev);
               }}
               className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
@@ -94,7 +99,8 @@ export const BookMenu = ({ book }) => {
                 {["reading", "desired", "read", "to-read"].map((status) => (
                   <li
                     key={status}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       handleUpdate(book._id, status);
                       setIsStatusMenuOpen(false);
                       setIsMenuOpen(false);

@@ -6,6 +6,7 @@ export const LoginPage = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +17,14 @@ export const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+    if (!password) {
+      setError("Password is required");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
@@ -29,10 +38,10 @@ export const LoginPage = () => {
         login(data.token);
         navigate("/");
       } else {
-        console.error(data.message);
+        setError(data.message);
       }
     } catch (error) {
-      console.error(error);
+      setError("Server error");
     }
   };
 
@@ -45,6 +54,9 @@ export const LoginPage = () => {
               Sign in to your account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              {error && (
+                <div className="text-red-500 text-sm mb-4">{error}</div>
+              )}
               <div>
                 <label
                   htmlFor="email"
