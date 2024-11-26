@@ -9,11 +9,13 @@ import { LoginPage } from "./pages/LoginPage";
 import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { BookProvider } from "./context/BookProvider";
+import { Toaster } from 'sonner'
 
 function App() {
   return (
     <BookProvider>
       <AuthProvider>
+        <Toaster />
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />

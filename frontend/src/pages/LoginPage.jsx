@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from 'sonner'
 
 export const LoginPage = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
@@ -35,6 +36,7 @@ export const LoginPage = () => {
       });
       const data = await response.json();
       if (response.ok) {
+        toast.success('Login successful')
         login(data.token);
         navigate("/");
       } else {

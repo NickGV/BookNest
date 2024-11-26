@@ -1,6 +1,7 @@
 import { saveBook, deleteBook, updateBook } from "../api/bookService";
 import { useContext, useState } from "react";
 import { BookContext } from "../context/BookContext";
+import { toast } from "sonner";
 
 export const BookMenu = ({ book }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,15 +24,21 @@ export const BookMenu = ({ book }) => {
       author: book.author,
       categories: book.categories || "Uncategorized",
       coverImage: book.coverImage || "",
+      pageCount: book.pageCount || 0,
+      infoLink: book.infoLink || "",
+      previewLink: book.previewLink || "",
+      publishedDate: book.publishedDate || "",
       status: "to-read",
     };
     const savedBook = await saveBook(token, newBook);
+    toast.success("Book added to your library");
     setBooks((prev) => [...prev, savedBook]);
   };
 
   const handleDelete = async (id) => {
     await deleteBook(token, id);
     setBooks((prev) => prev.filter((book) => book._id !== id));
+    toast.success("Book removed from your library");
   };
 
   const handleUpdate = async (id, status) => {
@@ -39,6 +46,7 @@ export const BookMenu = ({ book }) => {
     setBooks((prev) =>
       prev.map((book) => (book._id === id ? updatedBook : book))
     );
+    toast.success(`Status updated to ${status}`);
   };
 
   const statusColors = {
