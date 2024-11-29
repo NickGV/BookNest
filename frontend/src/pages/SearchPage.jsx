@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { SearchBar } from "../components/SearchBar";
 import { Results } from "../components/Results";
-import { fetchBooks } from "../api/bookService";
+import { fetchBooks, fetchBooksByCategory } from "../api/bookService";
+import { useLocation } from "react-router-dom";
 
 export const SearchPage = () => {
   const [books, setBooks] = useState([]);
@@ -9,15 +10,30 @@ export const SearchPage = () => {
   const [categories, setCategories] = useState([]);
   const [query, setQuery] = useState("");
 
+  const location = useLocation();
   useEffect(() => {
+    if (location.state) {
+      const category = location.state.category;
+
+      localStorage.removeItem("searchQuery");
+      localStorage.removeItem("searchBooks");
+      fetchCategory(category);
+    }
     const savedQuery = localStorage.getItem("searchQuery");
     const savedBooks = JSON.parse(localStorage.getItem("searchBooks"));
-    const savedCategories = JSON.parse(localStorage.getItem("searchCategories"));
+    const savedCategories = JSON.parse(
+      localStorage.getItem("searchCategories")
+    );
 
     if (savedQuery) setQuery(savedQuery);
     if (savedBooks) setBooks(savedBooks);
     if (savedCategories) setCategories(savedCategories);
   }, []);
+
+  const fetchCategory = async (category) => {
+    const fetchCategory = await fetchBooksByCategory(category);
+    setBooks(fetchCategory || []);
+  };
 
   const onSearch = async (query) => {
     setQuery(query);
@@ -28,14 +44,14 @@ export const SearchPage = () => {
     localStorage.setItem("searchBooks", JSON.stringify(fetchedBooks || []));
 
     const allCategories = fetchedBooks
-      .flatMap(book => book.volumeInfo.categories || [])
+      .flatMap((book) => book.volumeInfo.categories || [])
       .filter((value, index, self) => self.indexOf(value) === index);
     setCategories(allCategories);
     localStorage.setItem("searchCategories", JSON.stringify(allCategories));
   };
 
   const filteredBooks = filter
-    ? books.filter(book => book.volumeInfo.categories?.includes(filter))
+    ? books.filter((book) => book.volumeInfo.categories?.includes(filter))
     : books;
 
   return (
@@ -47,8 +63,10 @@ export const SearchPage = () => {
             className="bg-gray-800 text-white p-2"
           >
             <option value="">All Categories</option>
-            {categories.map(category => (
-              <option key={category} value={category}>{category}</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
             ))}
           </select>
         </div>

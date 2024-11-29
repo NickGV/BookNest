@@ -26,7 +26,7 @@ export const FeaturedBookCard = ({ book }) => {
 
   return (
     <div
-      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col hover:bg-gray-700 transition-all duration-300 group cursor-pointer"
+      className="bg-gray-800 text-white p-4 rounded-lg shadow-lg flex flex-col hover:bg-gray-700 transition-all duration-300 group cursor-pointer relative"
       onClick={handleCardClick}
     >
       <div className="h-[211px] w-full overflow-hidden rounded-lg mb-4">
@@ -55,17 +55,8 @@ export const FeaturedBookCard = ({ book }) => {
             </span>
           ))}
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowMore(!showMore);
-          }}
-          className="text-blue-400 mt-2"
-        >
-          {showMore ? "Show less" : "Show more"}
-        </button>
       </div>
-      <div className="">
+      <div className="absolute right-4">
         <BookMenu book={transformedBook} />
       </div>
     </div>

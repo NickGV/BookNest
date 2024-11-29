@@ -23,8 +23,22 @@ export const fetchBookById = async (id) => {
     },
   });
   const data = await response.json();
-  console.log(data);
   return data;
+};
+
+export const fetchBooksByCategory = async (category) => {
+  const response = await fetch(
+    `https://www.googleapis.com/books/v1/volumes?q=subjet:${category}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+  console.log(data.items);
+  return data.items;
 };
 
 export const fetchUserBooks = async (token) => {

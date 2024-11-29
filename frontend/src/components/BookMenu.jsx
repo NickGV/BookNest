@@ -2,11 +2,13 @@ import { saveBook, deleteBook, updateBook } from "../api/bookService";
 import { useContext, useState } from "react";
 import { BookContext } from "../context/BookContext";
 import { toast } from "sonner";
+import { AuthContext } from "../context/AuthContext";
 
 export const BookMenu = ({ book }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
   const { books, setBooks } = useContext(BookContext);
+  const {isAuthenticated} = useContext(AuthContext);
   const token = localStorage.getItem("authToken");
 
   const isBookAdded =
@@ -17,6 +19,10 @@ export const BookMenu = ({ book }) => {
   };
 
   const handleSave = async () => {
+    if(!isAuthenticated) {
+      toast.error("You must be logged in to save a book");
+      return;
+    }
     const newBook = {
       title: book.title,
       subtitle: book.subtitle || "No subtitle",
@@ -63,7 +69,7 @@ export const BookMenu = ({ book }) => {
           e.stopPropagation();
           toggleMenu();
         }}
-        className="p-2 bg-gray-700 text-white rounded-full focus:outline-none group-hover:bg-gray-600"
+        className="p-2 bg-gray-700 text-white rounded-full focus:outline-none group-hover:bg-gray-600 hover:scale-110 shadow-sm shadow-black"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
