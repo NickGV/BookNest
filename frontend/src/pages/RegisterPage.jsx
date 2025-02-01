@@ -38,7 +38,7 @@ export const RegisterPage = () => {
     }
     try {
       const response = await fetch(
-        "http://booknest-production-e0ee.up.railway.app/auth/register",
+        "https://booknest-production-e0ee.up.railway.app/auth/register",
         {
           method: "POST",
           headers: {

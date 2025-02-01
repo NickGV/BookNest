@@ -1,4 +1,4 @@
-const API_URL = "http://booknest-production-e0ee.up.railway.app";
+const API_URL = "https://booknest-production-e0ee.up.railway.app";
 
 export const fetchBooks = async (query) => {
   const response = await fetch(

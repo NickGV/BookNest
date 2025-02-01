@@ -28,7 +28,7 @@ export const LoginPage = () => {
     }
     try {
       const response = await fetch(
-        "http://booknest-production-e0ee.up.railway.app/auth/login",
+        "https://booknest-production-e0ee.up.railway.app/auth/login",
         {
           method: "POST",
           headers: {
