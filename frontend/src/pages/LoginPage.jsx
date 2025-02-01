@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { toast } from 'sonner'
+import { toast } from "sonner";
 
 export const LoginPage = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
@@ -27,16 +27,19 @@ export const LoginPage = () => {
       return;
     }
     try {
-      const response = await fetch("http://booknest-production-e0ee.up.railway.app/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
-        toast.success('Login successful')
+        toast.success("Login successful");
         login(data.token);
         navigate("/");
       } else {

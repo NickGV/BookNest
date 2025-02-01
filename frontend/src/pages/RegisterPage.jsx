@@ -37,16 +37,19 @@ export const RegisterPage = () => {
       return;
     }
     try {
-      const response = await fetch("http://booknest-production-e0ee.up.railway.app/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+      const response = await fetch(
+        "http://booknest-production-e0ee.up.railway.app/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
-        toast.success('Registration successful')
+        toast.success("Registration successful");
         register(data.token);
         navigate("/");
       } else {

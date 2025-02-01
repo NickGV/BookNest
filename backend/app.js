@@ -25,7 +25,7 @@ const corsOptions = {
   credentials: true
 };
 
-app.use(cors(corsOptions));
+app.use("*", cors(corsOptions));
 
 require("dotenv").config();
 
@@ -33,10 +33,10 @@ connectDB();
 
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/books", bookRoutes);
+app.use("/auth", authRoutes);
+app.use("/books", bookRoutes);
 
-app.get("/api/protected", authMiddleware, (req, res) => {
+app.get("/protected", authMiddleware, (req, res) => {
   res.json({ message: "Ruta protegida" });
 });
 
