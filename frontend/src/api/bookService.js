@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL = "http://booknest-production-e0ee.up.railway.app";
 
 export const fetchBooks = async (query) => {
   const response = await fetch(
@@ -16,12 +16,15 @@ export const fetchBooks = async (query) => {
 };
 
 export const fetchBookById = async (id) => {
-  const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `https://www.googleapis.com/books/v1/volumes/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const data = await response.json();
   return data;
 };
