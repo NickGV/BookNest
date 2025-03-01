@@ -1,3 +1,5 @@
+## You can see the preview here: https://booknest-nickgv.netlify.app/
+
 # BookNest
 
 BookNest is a full-stack application to manage your books easily and intuitively. It allows users to add, edit, delete, and view information about their books, offering a modern and responsive user experience.
